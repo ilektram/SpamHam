@@ -14,27 +14,31 @@ def get_gcd(a, b):
 
 
 def get_numerator_denominator(n):
+    is_negative = True
     try:
         new_n = float(n)
+        if new_n > 0:
+            is_negative = False
     except ValueError:
         print("Please provide a number next time...")
         return None
     if new_n == 0:
-        return (0, 1)
+        return (0, 1, False)
     num, dec = str(n).split(".")
     stripped_dec = dec.rstrip("0")
     denominator = int(10 ** len(stripped_dec))
-    numerator = int(new_n * denominator)
-    return (numerator, denominator)
+    numerator = int(abs(new_n) * denominator)
+    return (numerator, denominator, is_negative)
 
 
 def convert_to_fraction_string(n):
     print(f"Received {str(n)} as input...")
-    numerator, denominator = get_numerator_denominator(n)
+    numerator, denominator, is_negative = get_numerator_denominator(n)
     gcd = get_gcd(numerator, denominator)
     if gcd:
+
         res = "{}/{}".format(int(numerator/gcd), int(denominator/gcd))
-        return res
+        return "-" + res if is_negative else res
     else:
         return None
 

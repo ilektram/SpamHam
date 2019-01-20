@@ -11,15 +11,19 @@ def test_get_gcd():
 
 
 def test_get_numerator_denominator():
-    assert get_numerator_denominator("0.45") == (45, 100)
-    assert get_numerator_denominator(0.45) == (45, 100)
-    assert get_numerator_denominator("0.4500") == (45, 100)
-    assert get_numerator_denominator(0.45000) == (45, 100)
-    assert get_numerator_denominator(0) == (0, 1)
-    assert get_numerator_denominator("0") == (0, 1)
-    assert get_numerator_denominator("12.5") == (125, 10)
-    assert get_numerator_denominator(12.50) == (125, 10)
+    assert get_numerator_denominator("0.45") == (45, 100, False)
+    assert get_numerator_denominator(0.45) == (45, 100, False)
+    assert get_numerator_denominator("0.4500") == (45, 100, False)
+    assert get_numerator_denominator(0.45000) == (45, 100, False)
+    assert get_numerator_denominator(0) == (0, 1, False)
+    assert get_numerator_denominator("0") == (0, 1, False)
+    assert get_numerator_denominator("-0") == (0, 1, False)
+    assert get_numerator_denominator("12.5") == (125, 10, False)
+    assert get_numerator_denominator(12.50) == (125, 10, False)
+    assert get_numerator_denominator(-12.50) == (125, 10, True)
     assert get_numerator_denominator("a") is None
     assert get_numerator_denominator("") is None
-    assert get_numerator_denominator(1.0) == (1, 1)
-    assert get_numerator_denominator(10.0) == (10, 1)
+    assert get_numerator_denominator(1.0) == (1, 1, False)
+    assert get_numerator_denominator(10.0) == (10, 1, False)
+    assert get_numerator_denominator(-1.0) == (1, 1, True)
+    assert get_numerator_denominator(-10.0) == (10, 1, True)
