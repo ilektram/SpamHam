@@ -86,7 +86,7 @@ def do_crossvalidation(model_name, features, labels, save=False):
         classifier = SVC(verbose=0, random_state=7, class_weight='balanced', max_iter=1000, probability=True)
         param_grid = SVM_RAND_GRID
     else:
-        LOG.ERROR(f"Model {model_name} unrecognized. Please specify one of RF, LR, SGD, SVM!")
+        LOG.error(f"Model {model_name} unrecognized. Please specify one of RF, LR, SGD, SVM!")
         return None
     classifier_random = RandomizedSearchCV(
         estimator=classifier,
@@ -129,7 +129,7 @@ def get_trained_models(model_names_l, features, labels):
         if path.exists(f"{clf}.joblib"):
             trained_clf = load(f"{clf}.joblib")
         else:
-            trained_clf = do_crossvalidation(model_name, features, labels, save=True)
+            trained_clf = do_crossvalidation(clf, features, labels, save=True)
         clf_d[clf] = trained_clf
     return clf_d
 
@@ -171,6 +171,7 @@ def plot_roc_auc(fpr, tpr, auc, title, subtitle="", show=False):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title(title)
+    plt.suptitle(subtitle)
     plt.legend(loc="lower right")
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
