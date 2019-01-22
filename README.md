@@ -5,7 +5,7 @@ _Using Python3.6_
 ## Spam or Ham?
 
 #### Process:
-In order to run the spam ham classification run the main.py file. You may need to change the data filepaths by setting relevant environment variables (see config.py).
+In order to run the spam ham classification run the spamHam.py file. You may need to change the data filepaths by setting relevant environment variables (see config.py).
 
 1. We first examine our data by looking at the number of missing values per column (there were none), and their basic statistics (can be seen in the logs).
 2. We standardise the data using minMax scaling and subsequently engineer some new features that may help mitigate skewness in our features' distributions. Specifically we derive the log for some of the columns and add the new columns to our feature set.
