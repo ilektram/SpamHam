@@ -14,7 +14,7 @@ In order to run the spam ham classification run the spamHam.py file. You may nee
     - a random forest (RF),
     - a support vector machine (SVM), 
     - a logistic regression (LR) &
-    - a regularised logistic regression (SGD)
+    - a regularised logistic regression (SGD) [here we want to use classifier equivalent to the elasticnet for regression problems]
     
     During the 5fold-cross-validation for each of the listed classifiers, a range of hyperparameters is tested greedily (specified per model in config.py). This is
     done over 5 training-validation further splits of the training set and the best resulting model (as evaluated on the validation set) is selected per classifier, based on the average LogLoss score.
@@ -27,7 +27,9 @@ We evaluate the accuracy & LogLoss on both the training and testing data, for th
 The generated plots can be seen below.
 
 #### Results:
-Below we can see the results of the three classifiers and their performances on the testing data. Their training data performance is logged during runtime.
+Below we can see the results of the four classifiers and their performances on the testing data. Their training data performance is logged during runtime.
+
+*Logistic Regression*
 ![ConfusionMatrixLR](./ConfusionMatrixLR.png "ConfusionMatrixLR")
 ![RocAucLR](./RocAucLR.png "RocAucLR")
 
@@ -35,6 +37,7 @@ In the above charts we can see that the main type of error made by the LR classi
  That is not ideal as it would mean that we may miss significant emails at times. The accuracy, however is quite good, and the loss relatively low, indicating that in most cases the predicted probability is close to its correct value
  (i.e. that most the model is confident over most predictions). The results on the training set were similar, indicating that overfitting did not pose an issue in this case (Accuracy: 0.929, LogLoss: 0.212).
 
+*Random Forest*
 ![ConfusionMatrixRF](./ConfusionMatrixRF.png "ConfusionMatrixRF")
 ![RocAucRF](./RocAucRF.png "RocAucRF")
 
@@ -42,13 +45,15 @@ Surprisingly, the RF classifier performs a little worse than the LR, perhaps bec
 1. The hyperparameter "number of trees" may have needed further exploration & tuning.
 2. Most of the variables are not highly correlated, so the trees composing the RF model cannot benefit from the entirety of the information in the data.
 While this is reflected in the less steep ROC-AUC curve of the RF, it is clear that in this case most errors are classifying spam emails as ham, which is more to our liking. Similarly for the RF, overfitting was not observed (Accuracy: 0.898, LogLoss: 0.500).
-  
+
+*Stochastic Gradient Descent*
 ![ConfusionMatrixSGD](./ConfusionMatrixSGD.png "ConfusionMatrixSGD")
 ![RocAucSGD](./RocAucSGD.png "RocAucRF")  
 
 SGD, seen above, seem to perform marginally better than the LR classifier with a testing set score of 0.928 and a loss of 0.210 and no overfitting. 
 Yet, as with LR, the improvement comes from incorrectly identifying fewer spam as ham, rather than the opposite.
-  
+
+*Support Vector Machine*
 ![ConfusionMatrixSVM](./ConfusionMatrixSVM.png "ConfusionMatrixSVM")
 ![RocAucSVM](./RocAucSVM.png "RocAucSVM")  
 
