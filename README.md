@@ -30,6 +30,7 @@ The generated plots can be seen below.
 Below we can see the results of the four classifiers and their performances on the testing data. Their training data performance is logged during runtime.
 
 *Logistic Regression*
+
 ![ConfusionMatrixLR](./ConfusionMatrixLR.png "ConfusionMatrixLR")
 ![RocAucLR](./RocAucLR.png "RocAucLR")
 
@@ -38,6 +39,7 @@ In the above charts we can see that the main type of error made by the LR classi
  (i.e. that most the model is confident over most predictions). The results on the training set were similar, indicating that overfitting did not pose an issue in this case (Accuracy: 0.929, LogLoss: 0.212).
 
 *Random Forest*
+
 ![ConfusionMatrixRF](./ConfusionMatrixRF.png "ConfusionMatrixRF")
 ![RocAucRF](./RocAucRF.png "RocAucRF")
 
@@ -47,6 +49,7 @@ Surprisingly, the RF classifier performs a little worse than the LR, perhaps bec
 While this is reflected in the less steep ROC-AUC curve of the RF, it is clear that in this case most errors are classifying spam emails as ham, which is more to our liking. Similarly for the RF, overfitting was not observed (Accuracy: 0.898, LogLoss: 0.500).
 
 *Stochastic Gradient Descent*
+
 ![ConfusionMatrixSGD](./ConfusionMatrixSGD.png "ConfusionMatrixSGD")
 ![RocAucSGD](./RocAucSGD.png "RocAucRF")  
 
@@ -54,6 +57,7 @@ SGD, seen above, seem to perform marginally better than the LR classifier with a
 Yet, as with LR, the improvement comes from incorrectly identifying fewer spam as ham, rather than the opposite.
 
 *Support Vector Machine*
+
 ![ConfusionMatrixSVM](./ConfusionMatrixSVM.png "ConfusionMatrixSVM")
 ![RocAucSVM](./RocAucSVM.png "RocAucSVM")  
 
