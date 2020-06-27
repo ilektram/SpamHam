@@ -1,19 +1,22 @@
-from sklearn.model_selection import train_test_split
+import random
 
-from utils import LOG, read_data_as_df, get_column_names, preprocess_data, get_trained_models, evaluate_models
-from config import DATA_PATH, COL_NAME_PATH
+from utils import read_data_as_df, preprocess_data, get_trained_models, evaluate_models, get_tfidf, get_feature_df, LOG
+from config import DATA_PATH
+
+random.seed(2)
+
 
 if __name__ == "__main__":
+    df = read_data_as_df(DATA_PATH)
 
-    col_names_l = get_column_names(COL_NAME_PATH)
-
-    df = read_data_as_df(DATA_PATH, names=col_names_l)
-    LOG.debug(df.columns)
-
-    LOG.debug(df.head(10))
+    new_df = get_feature_df(df)
+    tfidf_df = get_tfidf(new_df)
 
     X, y = preprocess_data(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=27, shuffle=True)
+    X_val, y_val = X.loc[X.index == 'VALIDATION'], y.loc[y.index == 'VALIDATION'].values
+    X_test, y_test = X.loc[X.index == 'TEST'], y.loc[y.index == 'TEST'].values
+    X_train, y_train = X.loc[X.index == 'TRAIN'], y.loc[y.index == 'TRAIN'].values
+    LOG.info(f"Training set: {X_train.shape}, Testing set: {X_test.shape}, Validation set: {X_val.shape}")
 
     clf_d = get_trained_models(["RF", "SGD", "LR", "SVM"], X_train, y_train)
-    evaluate_models(clf_d, X_train, X_test, y_train, y_test)
+    evaluate_models(clf_d, X_train, X_val, y_train, y_val)

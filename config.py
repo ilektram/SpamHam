@@ -2,8 +2,7 @@ from os import getenv
 import numpy as np
 
 LOG_LEVEL = getenv('LOG_LEVEL', "INFO")
-DATA_PATH = getenv("DATA_PATH", "spambase/spambase.data")
-COL_NAME_PATH = getenv("COL_NAME_PATH", "spambase/spambase.names")
+DATA_PATH = getenv("DATA_PATH", "~/Downloads/2020_Peanut_exercice_dataset.csv")
 
 RF_RAND_GRID = {
     "criterion": ["gini", "entropy"],
