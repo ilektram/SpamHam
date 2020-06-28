@@ -1,10 +1,15 @@
+aiohttp==3.6.2
+async-timeout==3.0.1
 attrs==19.3.0
+chardet==3.0.4
 click==7.1.2
 cycler==0.10.0
+idna==2.10
 joblib==0.15.1
 kiwisolver==1.2.0
 matplotlib==3.2.2
 more-itertools==8.4.0
+multidict==4.7.6
 nltk==3.5
 numpy==1.19.0
 packaging==20.4
@@ -23,3 +28,4 @@ sklearn==0.0
 threadpoolctl==2.1.0
 tqdm==4.46.1
 wcwidth==0.2.5
+yarl==1.4.2

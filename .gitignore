@@ -811,3 +811,12 @@ bin/*
 /LR.joblib
 /SVM.joblib
 /SGD.joblib
+!/res_balanced/RF.joblib
+!/res_balanced/LR.joblib
+!/res_balanced/SGD.joblib
+!/res_balanced/SVM.joblib
+!/res_balanced/tfidf_vect.joblib
+!/res_balanced/LR.joblib
+!/res_balanced/RF.joblib
+!/test.csv
+!/res/
